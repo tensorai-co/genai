@@ -1,0 +1,34 @@
+[package]
+name = "genai"
+description = "One async Rust API for model providers: Anthropic, Google and OpenAI. Plain HTTP, no vendor SDKs."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+readme.workspace = true
+repository.workspace = true
+homepage.workspace = true
+rust-version.workspace = true
+
+[features]
+default = ["anthropic", "google", "openai"]
+anthropic = ["dep:genai-anthropic"]
+google = ["dep:genai-google"]
+openai = ["dep:genai-openai"]
+# Derive tool and output schemas from Rust types.
+schemars = ["genai-core/schemars"]
+
+[dependencies]
+genai-core.workspace = true
+genai-anthropic = { workspace = true, optional = true }
+genai-google = { workspace = true, optional = true }
+genai-openai = { workspace = true, optional = true }
+secrecy.workspace = true
+
+[dev-dependencies]
+futures-util.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
+
+[lints]
+workspace = true
